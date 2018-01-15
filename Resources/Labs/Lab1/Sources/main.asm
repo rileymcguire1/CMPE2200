@@ -72,7 +72,8 @@ LED_LOOP:
      JSR  Yellow_Off    ;switch to Green
      JSR  Green_On
      LDX  #1000      ;1 sec delay
-     JSR  Delay          
+     JSR  Delay
+     JSR  Green_Off  ;turn off green       
      BRA  LED_LOOP
   
   
