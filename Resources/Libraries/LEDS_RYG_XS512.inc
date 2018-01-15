@@ -35,8 +35,8 @@
 ;*                                                         *
 ;***********************************************************
 
-RYG_LED_Init: BCLR PT1AD1, #$E0
-              BSET DDR1AD1, #$E0
+RYG_LED_Init: BCLR PT1AD1, #$E0      ;make all leds low
+              BSET DDR1AD1, #$E0     ;make PAD13-15 outputs, rest inputs
               RTS
               
               
