@@ -1,11 +1,11 @@
 ;****************************************************************************
-;* HC12 Program:  YourProg - MiniExplanation                                *
+;* HC12 Program:  Lab1 - RYG LED and Delay Libraries                        *
 ;* Processor:     mc9s12xdp512                                              *
 ;* Xtal Speed:    16 MHz                                                    *
-;* Author:        Marc Anderson                                             *
+;* Author:        Riley McGuire                                             *
 ;* Date:          16:00 May 19, 2010	                                      *
 ;*                                                                          *
-;* Details: A more detailed explanation of the program is entered here      *
+;* Details: Testing the RYG LEDs and the small assembly delay subroutine    *
 ;*                                                                          * 
 ;*                                                                          *
 ;*                                                                          *
@@ -58,14 +58,22 @@ Entry:
             LDS   #RAMEnd+1       ; initialize the stack pointer
                                   ; enable interrupts
                                   
-                                  
-
-;Place your code here starting at the Main label                                
-                              
+                                                                                            
 Main:
-
-          
- 
+     JSR RYG_LED_Init
+LED_LOOP:     
+     JSR  Red_On     ;Turn on Red
+     LDX  #1000      ;1 sec delay
+     JSR  Delay          
+     JSR  Red_Off    ;switch to Yellow
+     JSR  Yellow_On
+     LDX  #1000      ;1 sec delay
+     JSR  Delay          
+     JSR  Yellow_Off    ;switch to Green
+     JSR  Green_On
+     LDX  #1000      ;1 sec delay
+     JSR  Delay          
+     BRA  LED_LOOP
   
   
   
@@ -82,6 +90,7 @@ Main:
           ;INCLUDE "YourLookUp.inc" 
 
  
+     
          
          
 ;**************************************************************
@@ -91,8 +100,8 @@ Main:
          ;INCLUDE "IIC-24AA512_EEPROM.inc"
          ;INCLUDE "LCD_XDP512.inc"
          ;INCLUDE "LEDS_7Seg.inc"
-         ;INCLUDE "LEDS_RYG_XDP512.inc"         
-         ;INCLUDE "My Delays.inc"
+         INCLUDE "LEDS_RYG_XDP512.inc"         
+         INCLUDE "My Delays.inc"
          ;INCLUDE "Switches_XDP512.inc"
          
        
