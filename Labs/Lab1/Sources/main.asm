@@ -62,18 +62,12 @@ Entry:
 Main:
      JSR RYG_LED_Init
 LED_LOOP:     
-     JSR  Red_On     ;Turn on Red
-     LDX  #1000      ;1 sec delay
+     JSR  Yellow_On     ;Turn on Red
+     LDX  #8      ;1 sec delay
      JSR  Delay          
-     JSR  Red_Off    ;switch to Yellow
-     JSR  Yellow_On
-     LDX  #1000      ;1 sec delay
-     JSR  Delay          
-     JSR  Yellow_Off    ;switch to Green
-     JSR  Green_On
-     LDX  #1000      ;1 sec delay
-     JSR  Delay
-     JSR  Green_Off  ;turn off green       
+     JSR  Yellow_Off    ;switch to Yellow
+     LDX  #74      ;1 sec delay
+     JSR  Delay                
      BRA  LED_LOOP
   
   
