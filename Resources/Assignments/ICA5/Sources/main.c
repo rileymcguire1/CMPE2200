@@ -1,10 +1,11 @@
 /**************************************************************************
-*HC12 Program:	YourProg - MiniExplanation
+*HC12 Program:	ICA - 5
 *Processor:		MC9S12XDP512
 *Xtal Speed:	16 MHz
-*Author:		Marc Anderson
-*Date:		  May 25, 2016                                       
-*Details:   Skeleton File with some additions
+*Author:		Riley McGuire
+*Date:		  Jan 25, 2018                                       
+*Details:   Skeleton File with some additional libraries turning on the 
+*           LEDs with some delays in C
 **************************************************************************/
 
 #include <hidef.h>         	// common defines and macros
