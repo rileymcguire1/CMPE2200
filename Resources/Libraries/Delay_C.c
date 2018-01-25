@@ -34,7 +34,7 @@ Delay_2:  DBNE Y, Delay_2
 	{
 		asm	ldx mSec
 		asm	Delay:	LDY #2665
-		asm	delay_2: dbne y, Delay_2
+		asm	Delay_2: dbne y, Delay_2
 		asm dbne x, Delay
 	}
 

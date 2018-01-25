@@ -1,3 +1,5 @@
+#include "derivative.h"
+/*
 ;***********************************************************
 ;*      Libary: LEDS_RYG_XDP512.inc                        *
 ;*      Contains:                                          * 
@@ -39,8 +41,16 @@ RYG_LED_Init: BCLR PT1AD1, #$E0      ;make all leds low
               BSET DDR1AD1, #$E0     ;make PAD13-15 outputs, rest inputs
               BSET ATD1DIEN1, #$1F   ;enable digital outputs to switches
               RTS
-              
-              
+*/
+void led_sw_init(void)
+{
+	PT1AD1 &= 0x1F;
+	DDR1AD1 |= 0xE0;
+	ATD1DIEN1 |= 0x1F;
+}
+
+
+/*              
 ;***********************************************************
 ;*      Red On-Off-Toggle  Subroutine                      *
 ;*                                                         * 
@@ -71,7 +81,24 @@ Red_Toggle: PSHD
             STD PT1AD1
             PULD
             RTS          
-            
+*/     
+
+void Red_On(void)
+{
+	PT1AD1 |= 0x80;
+}
+
+void Red_Off(void)
+{
+	PT1AD1 &= 0x7F;
+}
+
+void Red_Toggle(void)
+{
+	PT1AD1 ^= 0x80;
+}
+
+/*
             
 ;***********************************************************
 ;*      Yellow On-Off-Toggle  Subroutine                   *
@@ -103,7 +130,25 @@ Yellow_Toggle:  PSHD
                 STD PT1AD1
                 PULD
                 RTS          
-            
+           
+*/
+
+void Yellow_On(void)
+{
+	PT1AD1 |= 0x40;
+}
+
+void Yellow_Off(void)
+{
+	PT1AD1 &= 0xBF;
+}
+
+void Yellow_Toggle(void)
+{
+	PT1AD1 ^= 0x40;
+}
+
+/*
             
 ;***********************************************************
 ;*      Green On-Off-Toggle  Subroutine                    *
@@ -134,4 +179,21 @@ Green_Toggle: PSHD
               EORA #%00100000
               STD PT1AD1
               PULD
-              RTS                                  
+              RTS  
+			  
+*/
+
+void Green_On(void)
+{
+	PT1AD1 |= 0x20;
+}
+
+void Green_Off(void)
+{
+	PT1AD1 &= 0xDF;
+}
+
+void Green_Toggle(void)
+{
+	PT1AD1 ^= 0x20;
+}
