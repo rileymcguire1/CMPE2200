@@ -46,7 +46,6 @@ void led_sw_init(void)
 {
 	PT1AD1 &= 0x1F;
 	DDR1AD1 |= 0xE0;
-	ATD1DIEN1 |= 0x1F;
 }
 
 

@@ -1,6 +1,6 @@
 /**************************************************************************
 *HC12 Program:	YourProg - MiniExplanation
-*Processor:		MC9S12XDP512
+*Processor:	MC9S12XDP512
 *Xtal Speed:	16 MHz
 *Author:		Riley McGuire
 *Date:		Jan 00, 2018
@@ -19,12 +19,10 @@
 //#include "IIC0_Lib.h"
 //#include "LCD_4Line_C.h" 
 //#include "Misc_Lib.h"
-//#include "LEDS_7Seg_C.h"
-//#include "LEDS_7Seg_C.h"
-
-#include "Delay_C.h"
-#include "RYG_LEDs.h"
-
+//#include "LED_7Seg_C.h"
+//#include "Delay_C.h"
+//#include "RYG_LEDs.h"
+//#include "Switches_C.h"
 
 
 /********************************************************************
@@ -65,11 +63,7 @@ void main(void) 	// main entry point
 	for (;;)		//endless program loop
 	{
                                              
-   Red_On();
-   Delay_C (25);
-   
-   Red_Off();
-   Delay_C (500); 
+    
     
 
 	}

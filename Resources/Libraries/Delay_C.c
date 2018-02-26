@@ -1,3 +1,4 @@
+#include "Delay_C.h"
 /*
 ;***********************************************************
 ;*      Libary: My Delays.inc                              *
@@ -8,7 +9,7 @@
 ;*              Author: Riley McGuire                      *
 ;*                                                         *
 ;*              Last Modified: January 15, 2018 (created)  *
-;*                                                         *
+;*              Converted to C:  January 25, 2018          *
 ;***********************************************************
 
 
