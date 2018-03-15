@@ -8,7 +8,7 @@
 **************************************************************************/
 
 #include <hidef.h>         	// common defines and macros
-//#include <stdio.h>		    // ANSI C Standard Input/Output functions
+#include <stdio.h>		    // ANSI C Standard Input/Output functions
 //#include <math.h>			      // ANSI C Mathematical functions
 
 #include "derivative.h"    	// derivative-specific definitions
@@ -17,14 +17,13 @@
 *		Library includes - your libraries' header files
 ********************************************************************/
 //#include "IIC0_Lib.h"
-//#include "LCD_4Line_C.h" 
+#include "LCD_4Line_C.h" 
 //#include "Misc_Lib.h"
 //#include "LED_7Seg_C.h"
-//#include "Delay_C.h"
+#include "Delay_C.h"
 //#include "RYG_LEDs.h"
 //#include "Switches_C.h"
-//#include "A2D_Lib_C.h"
-//#include "SCI_Lib_C.h"
+#include "A2D_Lib_C.h"
 
 
 /********************************************************************
@@ -37,7 +36,9 @@
 *		Variables
 ********************************************************************/
 
-
+ unsigned int result;
+ char s[20];
+ float stepSize = 0.005;
 
 /********************************************************************
 *		Lookups
@@ -53,7 +54,8 @@ void main(void) 	// main entry point
 *		Initializations
 ********************************************************************/
  
-  led_sw_init();
+  ATD0_Init();
+  lcdInit();
   
  
 
@@ -64,10 +66,17 @@ void main(void) 	// main entry point
 	
 	for (;;)		//endless program loop
 	{
+    result = ATD0_Sample7();
                                              
+    lcdLabels("A2D Output:","Voltage:","","");
+    Set_R_C(0,13);
+    sprintf(s,"%X",result);
+    lcdString(s);
+    Set_R_C(1,10);
+    sprintf(s,"%5.3f",result*stepSize);
+    lcdString(s);
     
-    
-
+    Delay_C(1000);
 	}
 }
 /**************************************************************************
