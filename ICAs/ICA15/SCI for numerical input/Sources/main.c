@@ -32,15 +32,21 @@
 *		Prototypes
 ********************************************************************/
 
-
+void GetNumber(void);
 
 /********************************************************************
 *		Variables
 ********************************************************************/
 
  unsigned char Key_In = 0;
- char output[20];
- char input[2];
+ char output[20] = "";
+ char input[2] = "";
+ char RxData;
+ char ClearAndHome[] = "\x1B[2J\x1B[H";
+ float n1;
+ float n2;
+ float result;
+ 
 
 /********************************************************************
 *		Lookups
@@ -67,16 +73,38 @@ void main(void) 	// main entry point
 	
 	for (;;)		//endless program loop
 	{
-    Key_In = Rx_Byte();
-    Tx_Byte(Key_In);
-                                             
-    if(Key_In == 0x0d){
-      Key_In = 0x0a;
-      Tx_Byte(Key_In);
-    }
-    Delay_C(100);
+    //set up LCD display
+    Tx_String(ClearAndHome); 
+    lcdClear();
+    n1 = 0;
+    n2 = 0;
+    output[0] = 0;
+    lcdLabels("THE MULTIPLIER","N1:", "N2:","N1 X N2=");
     
-
+    //get first decimal and output to lcd
+    Tx_String("Enter the first decimal number: ");
+    GetNumber();
+    n1 = atof(output);
+    Set_R_C(1,5);
+    lcdString(output);
+    output[0] = 0;
+    //get second decimal and output to lcd
+    Tx_String("Enter the second decimal number: ");
+    GetNumber();
+    n2 = atof(output);
+    Set_R_C(2,5);
+    lcdString(output);
+    output[0] = 0;
+    
+    //calculate result
+    result = n1*n2;
+    Set_R_C(3,9);
+    (void)sprintf(output,"%.03f",result);
+    lcdString(output);
+    
+    //hold till enter is pressed
+    Tx_String("Press Enter to Reset");
+    while(Rx_Byte() !=0x0d);
 	}
 }
 /**************************************************************************
@@ -85,6 +113,17 @@ void main(void) 	// main entry point
 *              above
 ***************************************************************************/
 
+void GetNumber(void){
+    do{
+      RxData = Rx_Byte();
+      Tx_Byte(RxData);
+      input[0] = RxData;
+      (void)strcat(output,input);
+    }while(RxData != 0x0d);
+    output[strlen(output)-1] = 0;
+    Tx_String(ClearAndHome);
+}
+  
 
 
 /********************************************************************

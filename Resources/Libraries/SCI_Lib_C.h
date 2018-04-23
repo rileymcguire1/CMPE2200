@@ -1,4 +1,4 @@
-
+void GetNumber(char*);
 void Init19200(void);
 unsigned char Key_hit(void);
 unsigned char Rx_Byte(void);

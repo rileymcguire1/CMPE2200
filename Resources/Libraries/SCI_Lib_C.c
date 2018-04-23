@@ -1,4 +1,7 @@
 #include "derivative.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include "Delay_C.h"
 #include "SCI_Lib_C.h"
 /*
@@ -113,5 +116,29 @@
 	  }
 	    
 	}
+	
+/*
+;***********************************************************
+;*      GetNumber()                                  
+;*                                    
+;*      Description: Get user input from keyboard on terraterm
+;*                   takes output variable
+;*                                                         
+;***********************************************************
+
+*/
+
+void GetNumber(char* output){
+    char input[2] = "";
+    char RxData;
+    do{
+      RxData = Rx_Byte();
+      Tx_Byte(RxData);
+      input[0] = RxData;
+      (void)strcat(output,input);
+    }while(RxData != 0x0d);
+    output[strlen(output)-1] = 0;
+    Tx_String("\x1B[2J\x1B[H");
+}
 
 

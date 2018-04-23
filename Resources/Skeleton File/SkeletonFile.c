@@ -25,6 +25,7 @@
 //#include "Switches_C.h"
 //#include "A2D_Lib_C.h"
 //#include "SCI_Lib_C.h"
+//#include "Timer.h"
 
 
 /********************************************************************
@@ -53,7 +54,7 @@ void main(void) 	// main entry point
 *		Initializations
 ********************************************************************/
  
-  led_sw_init();
+  
   
  
 

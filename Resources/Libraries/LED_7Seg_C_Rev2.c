@@ -32,7 +32,7 @@
 ;*                                                         
 ;***********************************************************
 */
-void LEDS_7_Init(void)
+void LEDS_7Seg_Init(void)
 {
   signed char i = 0;
   unsigned char Digit = 0;
